@@ -91,6 +91,7 @@
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\SceneNameAttribute.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\StartController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\TimeController.cs" />
+    <Compile Include="Assets\UnityChan2D\Demo\Scripts\UnisAI.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\newScript1.cs" />
     <Compile Include="Assets\UnityChan2D\Scripts\UnityChan2DController.cs" />
   </ItemGroup>
