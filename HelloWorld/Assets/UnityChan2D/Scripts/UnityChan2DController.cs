@@ -100,6 +100,15 @@ public class UnityChan2DController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "DamageObject" && m_state == State.Normal)
+        {
+            m_state = State.Damaged;
+            StartCoroutine(INTERNAL_OnDamage());
+        }
+    }
+
     IEnumerator INTERNAL_OnDamage()
     {
         m_animator.Play(m_isGround ? "Damage" : "AirDamage");
