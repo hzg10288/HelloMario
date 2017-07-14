@@ -1,6 +1,5 @@
 # Unity build files
 HelloWorld/Library
-HelloWorld/ProjectSettings
 HelloWorld/obj
 HelloWorld/.vs
 HelloWorld/Temp
