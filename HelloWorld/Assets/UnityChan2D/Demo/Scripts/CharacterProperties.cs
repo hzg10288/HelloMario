@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterProperties : MonoBehaviour {
 
@@ -14,9 +15,11 @@ public class CharacterProperties : MonoBehaviour {
 
     public float incounterOngoingDamages = 0;
 
+    [SerializeField]
+    private Slider m_slider;
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -24,8 +27,9 @@ public class CharacterProperties : MonoBehaviour {
 	    if (incounterOngoingDamages > 0)
         {
             HP -= incounterOngoingDamages * Time.deltaTime;
-            Debug.Log(tag + " HP is " + HP.ToString());
         }
+        if (m_slider)
+            m_slider.value = HP;
 	}
 
     void OnTriggerEnter2D(Collider2D other)
@@ -34,9 +38,11 @@ public class CharacterProperties : MonoBehaviour {
             if (interacttag == other.tag)
             {
                 CharacterProperties otherProperties = other.GetComponent<CharacterProperties>();
-                HP -= CalculateImmediateDamage(this, otherProperties);
-                Debug.Log(tag + " HP is " + HP.ToString());
-                incounterOngoingDamages += otherProperties.ongoingDamages;
+                if (otherProperties != null)
+                {
+                    HP -= CalculateImmediateDamage(this, otherProperties);
+                    incounterOngoingDamages += otherProperties.ongoingDamages;
+                }
             }
             
         }
@@ -48,7 +54,10 @@ public class CharacterProperties : MonoBehaviour {
             if (interacttag == other.tag)
             {
                 CharacterProperties otherProperties = other.GetComponent<CharacterProperties>();
-                incounterOngoingDamages -= otherProperties.ongoingDamages;
+                if (otherProperties != null)
+                {
+                    incounterOngoingDamages -= otherProperties.ongoingDamages;
+                }
             }
             
         }
@@ -60,9 +69,12 @@ public class CharacterProperties : MonoBehaviour {
             if (interacttag == other.gameObject.tag)
             {
                 CharacterProperties otherProperties = other.gameObject.GetComponent<CharacterProperties>();
-                HP -= CalculateImmediateDamage(this, otherProperties);
-                Debug.Log(tag + " HP is " + HP.ToString());
-                incounterOngoingDamages += otherProperties.ongoingDamages;
+                if (otherProperties != null)
+                {
+                    HP -= CalculateImmediateDamage(this, otherProperties);
+                    Debug.Log(tag + " HP is " + HP.ToString());
+                    incounterOngoingDamages += otherProperties.ongoingDamages;
+                }
             }
             
         }
@@ -74,7 +86,10 @@ public class CharacterProperties : MonoBehaviour {
             if (interacttag == other.gameObject.tag)
             {
                 CharacterProperties otherProperties = other.gameObject.GetComponent<CharacterProperties>();
-                incounterOngoingDamages -= otherProperties.ongoingDamages;
+                if (otherProperties != null)
+                {
+                    incounterOngoingDamages -= otherProperties.ongoingDamages;
+                }
             }
             
         }
@@ -84,11 +99,5 @@ public class CharacterProperties : MonoBehaviour {
     {
         float immediateDamages = other.immediateDamages - self.defends;
         return immediateDamages > 0.0f ? immediateDamages : 0.0f;
-    }
-
-    float CalculateimmediateDamage(CharacterProperties self, CharacterProperties other)
-    {
-        float immediateDamages = other.immediateDamages - self.defends;
-        return (immediateDamages > 0.0f ? immediateDamages : 0.0f) * Time.deltaTime;
     }
 }
