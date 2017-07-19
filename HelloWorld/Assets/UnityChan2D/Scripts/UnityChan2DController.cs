@@ -12,6 +12,7 @@ public class UnityChan2DController : MonoBehaviour
     private Animator m_animator;
     private BoxCollider2D m_boxcollier2D;
     private Rigidbody2D m_rigidbody2D;
+    private SpriteRenderer m_renderer;
     private bool m_isGround;
     private const float m_centerY = 1.5f;
 
@@ -47,6 +48,7 @@ public class UnityChan2DController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_boxcollier2D = GetComponent<BoxCollider2D>();
         m_rigidbody2D = GetComponent<Rigidbody2D>();
+        m_renderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -64,7 +66,15 @@ public class UnityChan2DController : MonoBehaviour
         if (Mathf.Abs(move) > 0)
         {
             Quaternion rot = transform.rotation;
-            transform.rotation = Quaternion.Euler(rot.x, Mathf.Sign(move) == 1 ? 0 : 180, rot.z);
+        //    transform.rotation = Quaternion.Euler(rot.x, Mathf.Sign(move) == 1 ? 0 : 180, rot.z);
+            if (Mathf.Sign(move) == 1)
+            {
+                m_renderer.flipX = false;
+            }
+            else
+            {
+                m_renderer.flipX = true;
+            }
         }
 
         m_rigidbody2D.velocity = new Vector2(move * maxSpeed, m_rigidbody2D.velocity.y);
