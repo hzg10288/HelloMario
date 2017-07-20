@@ -50,6 +50,7 @@
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\BlockController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\BrokenBlockController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CameraController.cs" />
+     <Compile Include="Assets\UnityChan2D\Demo\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CharacterProperties.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CoinController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\Demo.cs" />
