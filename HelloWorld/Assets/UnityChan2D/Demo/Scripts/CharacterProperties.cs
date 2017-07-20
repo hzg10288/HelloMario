@@ -39,7 +39,7 @@ public class CharacterProperties : MonoBehaviour {
             if (!isDeath)
             {
                 m_collider.enabled = false;
-                m_rigidbody.velocity = new Vector2(0, 10.0f);
+                m_rigidbody.velocity = new Vector2(0, 20.0f);
             }
             if (transform.position.y < -10)
                 Application.LoadLevel(deathScene);
