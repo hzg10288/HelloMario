@@ -53,6 +53,7 @@
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CharacterProperties.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\CoinController.cs" />
+     <Compile Include="Assets\UnityChan2D\Demo\Scripts\DeathScenePosWrap.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\Demo.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\IntroCameraController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\LoadingController.cs" />
