@@ -81,6 +81,7 @@
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\AudioSourceController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BlockController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BrokenBlockController.cs" />
+    <Compile Include="Assets\UnityChan2D\Demo\Scripts\BulletController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\CameraController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\CharacterProperties.cs" />

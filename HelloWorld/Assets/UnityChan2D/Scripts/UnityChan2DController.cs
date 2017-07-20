@@ -4,7 +4,7 @@ using UnityEngine;
 public class UnityChan2DController : MonoBehaviour
 {
     public float maxSpeed = 10f;
-    public float jumpPower = 200f;
+    public float jumpPower = 500f;
     public Vector2 backwardForce = new Vector2(-4.5f, 5.4f);
 
     public LayerMask whatIsGround;
@@ -17,6 +17,10 @@ public class UnityChan2DController : MonoBehaviour
     private const float m_centerY = 1.5f;
     private int isjumponce = 0;
 
+    public GameObject bullet;
+    public float shootCooldown = 0.2f;
+    private float time = 0;
+
     private State m_state = State.Normal;
 
     void Reset()
@@ -25,7 +29,7 @@ public class UnityChan2DController : MonoBehaviour
 
         // UnityChan2DController
         maxSpeed = 10f;
-        jumpPower = 1000;
+        jumpPower = 500;
         backwardForce = new Vector2(-4.5f, 5.4f);
         whatIsGround = 1 << LayerMask.NameToLayer("Ground");
 
@@ -60,6 +64,23 @@ public class UnityChan2DController : MonoBehaviour
             bool jump = Input.GetButtonDown("Jump");
             Move(x, jump);
         }
+        if (Input.GetKey(KeyCode.Z) && time > shootCooldown)
+        {
+            GameObject obj = Instantiate(bullet, transform);
+            obj.transform.parent = null;
+            Rigidbody2D rigidbody = obj.GetComponent<Rigidbody2D>();
+            if (!m_renderer.flipX)
+            {
+                rigidbody.velocity = new Vector2(10, 0);
+            }
+            else
+            {
+                rigidbody.velocity = new Vector2(-10, 0);
+            }
+            
+            time = 0;
+        }
+        time += Time.deltaTime;
     }
 
     void Move(float move, bool jump)
