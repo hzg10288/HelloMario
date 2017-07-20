@@ -15,18 +15,35 @@ public class CharacterProperties : MonoBehaviour {
 
     public float incounterOngoingDamages = 0;
 
+    [SceneName]
+    public string deathScene;
+
     [SerializeField]
     private Slider m_slider;
 
+    private Collider2D m_collider;
+    private Rigidbody2D m_rigidbody;
+
+    private bool isDeath = false;
+
 	// Use this for initialization
 	void Start () {
+        m_collider = GetComponent<Collider2D>();
+        m_rigidbody = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (HP <= 0)
         {
-            Application.LoadLevel("Death1-1");
+            if (!isDeath)
+            {
+                m_collider.enabled = false;
+                m_rigidbody.velocity = new Vector2(0, 10.0f);
+            }
+            if (transform.position.y < -10)
+                Application.LoadLevel(deathScene);
+            isDeath = true;
         }
 	    if (incounterOngoingDamages > 0)
         {

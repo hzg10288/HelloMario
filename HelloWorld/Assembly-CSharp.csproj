@@ -58,6 +58,7 @@
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\LoadingController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\Loop.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\PointController.cs" />
+     <Compile Include="Assets\UnityChan2D\Demo\Scripts\ReloadGame.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\SceneNameAttribute.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\StartController.cs" />
      <Compile Include="Assets\UnityChan2D\Demo\Scripts\TimeController.cs" />
