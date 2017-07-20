@@ -4,7 +4,7 @@ using UnityEngine;
 public class UnityChan2DController : MonoBehaviour
 {
     public float maxSpeed = 10f;
-    public float jumpPower = 1000f;
+    public float jumpPower = 200f;
     public Vector2 backwardForce = new Vector2(-4.5f, 5.4f);
 
     public LayerMask whatIsGround;
@@ -15,6 +15,7 @@ public class UnityChan2DController : MonoBehaviour
     private SpriteRenderer m_renderer;
     private bool m_isGround;
     private const float m_centerY = 1.5f;
+    private int isjumponce = 0;
 
     private State m_state = State.Normal;
 
@@ -83,11 +84,22 @@ public class UnityChan2DController : MonoBehaviour
         m_animator.SetFloat("Vertical", m_rigidbody2D.velocity.y);
         m_animator.SetBool("isGround", m_isGround);
 
+        
+
         if (jump && m_isGround)
         {
             m_animator.SetTrigger("Jump");
             SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
             m_rigidbody2D.AddForce(Vector2.up * jumpPower);
+            isjumponce = 1;
+            jump = false;
+        }
+        if (jump && isjumponce == 1)
+        {
+            m_animator.SetTrigger("Jump");
+            SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
+            m_rigidbody2D.AddForce(Vector2.up * jumpPower);
+            isjumponce = 0;
         }
     }
 
