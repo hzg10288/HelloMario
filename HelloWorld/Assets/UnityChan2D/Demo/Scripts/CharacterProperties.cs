@@ -15,6 +15,10 @@ public class CharacterProperties : MonoBehaviour {
 
     public float incounterOngoingDamages = 0;
 
+    public GameObject bullet;
+    public float shootCooldown;
+    private float time;
+
     [SceneName]
     public string deathScene;
 
@@ -51,6 +55,18 @@ public class CharacterProperties : MonoBehaviour {
         }
         if (m_slider)
             m_slider.value = HP;
+
+
+        if (Input.GetKey(KeyCode.Z) && time > shootCooldown)
+        {
+            GameObject obj = Instantiate(bullet, transform);
+            obj.transform.parent = null;
+            Rigidbody2D rigidbody = obj.GetComponent<Rigidbody2D>();
+            rigidbody.velocity = new Vector2(10, 0);
+            time = 0;
+        }
+        time += Time.deltaTime;
+
 	}
 
     void OnTriggerEnter2D(Collider2D other)
