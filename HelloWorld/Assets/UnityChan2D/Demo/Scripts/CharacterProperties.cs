@@ -24,6 +24,10 @@ public class CharacterProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (HP <= 0)
+        {
+            Application.LoadLevel("Death1-1");
+        }
 	    if (incounterOngoingDamages > 0)
         {
             HP -= incounterOngoingDamages * Time.deltaTime;
