@@ -4,7 +4,7 @@ using UnityEngine;
 public class UnityChan2DController : MonoBehaviour
 {
     public float maxSpeed = 10f;
-    public float jumpPower = 500f;
+    public float jumpSpeed = 500f;
     public Vector2 backwardForce = new Vector2(-4.5f, 5.4f);
 
     public LayerMask whatIsGround;
@@ -29,7 +29,7 @@ public class UnityChan2DController : MonoBehaviour
 
         // UnityChan2DController
         maxSpeed = 10f;
-        jumpPower = 500;
+        jumpSpeed = 500;
         backwardForce = new Vector2(-4.5f, 5.4f);
         whatIsGround = 1 << LayerMask.NameToLayer("Ground");
 
@@ -105,13 +105,12 @@ public class UnityChan2DController : MonoBehaviour
         m_animator.SetFloat("Vertical", m_rigidbody2D.velocity.y);
         m_animator.SetBool("isGround", m_isGround);
 
-        
-
+        // 两段跳
         if (jump && m_isGround)
         {
             m_animator.SetTrigger("Jump");
             SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
-            m_rigidbody2D.AddForce(Vector2.up * jumpPower);
+            m_rigidbody2D.velocity = Vector2.up * jumpSpeed;
             isjumponce = 1;
             jump = false;
         }
@@ -119,7 +118,7 @@ public class UnityChan2DController : MonoBehaviour
         {
             m_animator.SetTrigger("Jump");
             SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
-            m_rigidbody2D.AddForce(Vector2.up * jumpPower);
+            m_rigidbody2D.velocity = Vector2.up * jumpSpeed;
             isjumponce = 0;
         }
     }
